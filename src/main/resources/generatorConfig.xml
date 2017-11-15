@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration 
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generator.properties" />  
+    
+    <context id="mysqlMap" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        
+		<jdbcConnection driverClass="${jdbc.driverClassName}"
+			connectionURL="${jdbc.url}"
+			userId="root" password="123456">
+		</jdbcConnection>
+ 		
+ 
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!--domain 代码 生成路径 -->
+        <javaModelGenerator targetPackage="${modelTargetPackage}"
+            targetProject="${modelTargetDir}">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator> 
+		
+		<!--mapper 代码 生成路径 -->
+        <sqlMapGenerator targetPackage="${xmlTargetPackage}"
+            targetProject="${xmlTargetDir}">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="${daoTargetDir}" type="XMLMAPPER" targetProject="${modelTargetDir}">
+        	<property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <table tableName="t_admin" alias="admin" mapperName="AdminDao" domainObjectName="Admin"></table>
+        <!-- <table tableName="t_activity_prize_category" alias="prizeCategory" mapperName="PrizeCategoryDao" domainObjectName="PrizeCategory"></table>
+       
+        <table tableName="t_activity_request_records" alias="activityRequestRecords" mapperName="ActivityRequestRecordsDao" domainObjectName="ActivityRequestRecords"></table>
+        <table tableName="t_activity_user_seniority" alias="userSeniority" mapperName="UserSeniorityDao" domainObjectName="UserSeniority"></table>
+        <table tableName="t_activity" alias="activity" mapperName="ActivityDao" domainObjectName="Activity"></table>
+        <table tableName="t_activity_user_join_records" alias="activityUserJoinRecords" mapperName="ActivityUserJoinRecordsDao" domainObjectName="ActivityUserJoinRecords"></table>
+        <table tableName="user" alias="user" mapperName="UserDao" domainObjectName="User"></table> -->
+        <!-- <table tableName="t_order_details" alias="orderDetails" mapperName="OrderDetailsDao" domainObjectName="OrderDetails"></table> -->
+        
+	</context>
+</generatorConfiguration>
