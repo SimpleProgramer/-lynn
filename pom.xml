@@ -74,19 +74,20 @@
 		    <artifactId>aws-java-sdk-core</artifactId>
 		    <version>1.11.18</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
 		<dependency>
 		    <groupId>org.bouncycastle</groupId>
 		    <artifactId>bcprov-jdk15on</artifactId>
 		    <version>1.47</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
 		<dependency>
-		  <groupId>com</groupId>
-		  <artifactId>lynn</artifactId>
-		  <version>generator</version>
-		  <type>pom</type>
+		  <groupId>com.lynn.generator</groupId>
+		  <artifactId>override-generator</artifactId>
+		  <version>1.0.1</version>
 		</dependency>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 	</dependencies>
 	<build>
 		<finalName>lynnAdmin</finalName>
@@ -109,10 +110,9 @@
 						<version>5.1.35</version>
 					</dependency>
 					<dependency>
-					  <groupId>com</groupId>
-					  <artifactId>lynn</artifactId>
-					  <version>generator</version>
-					  <type>pom</type>
+					  <groupId>com.lynn.generator</groupId>
+					  <artifactId>override-generator</artifactId>
+					  <version>1.0.1</version>
 					</dependency>
 				</dependencies>
 				<configuration>

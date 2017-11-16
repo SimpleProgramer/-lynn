@@ -18,7 +18,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 @Configuration
 public class DataSourceConfiguration {
 	@Value("${datasource.type}")
-	private Class<? extends DataSource> dataSourceType;
+	private Class<? extends DruidDataSource> dataSourceType;
 	
 	@Bean(name="writeDataSource")
 	@Primary

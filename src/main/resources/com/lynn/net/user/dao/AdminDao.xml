@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="./src/main/java.AdminDao">
+<mapper namespace="com.lynn.net.user.dao.AdminDao">
   <resultMap id="BaseResultMap" type="com.lynn.net.user.entity.Admin">
     <id column="admin_id" jdbcType="VARCHAR" property="id" />
     <result column="admin_name" jdbcType="VARCHAR" property="name" />
@@ -81,6 +81,9 @@
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
+    </if>
+    <if test="fromRowNum != null and toRowNum >= 0">
+      limit #{fromRowNum}, #{toRowNum}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
