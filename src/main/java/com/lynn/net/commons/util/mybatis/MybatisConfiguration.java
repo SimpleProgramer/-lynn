@@ -15,21 +15,21 @@ import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.stereotype.Component;
 
 @Configuration
 @AutoConfigureAfter({ DataSourceConfiguration.class })
 @Slf4j
 public class MybatisConfiguration extends MybatisAutoConfiguration{
-
-	@Value("${datasource.readSize}")
-    private String dataSourceSize;
-
+	
 	public MybatisConfiguration(
 			MybatisProperties properties,
 			ObjectProvider<Interceptor[]> interceptorsProvider,
@@ -47,7 +47,7 @@ public class MybatisConfiguration extends MybatisAutoConfiguration{
 	}
 	@Bean
 	public AbstractRoutingDataSource routingDataSourceProxy() {
-		int size = Integer.parseInt(dataSourceSize);
+		int size = 2;
 		MyAbstractRoutingDataSource proxy = new MyAbstractRoutingDataSource(size);
         Map<Object, Object> targetDataSources = new HashMap<Object, Object>();
         DataSource writeDataSource = (DataSource) SpringContextHolder.getBean("writeDataSource");

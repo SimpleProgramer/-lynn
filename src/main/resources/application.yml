@@ -1,12 +1,12 @@
-server:
+server: 
   port: 8888
 spring: 
   aop: 
     auto: true 
-datasource:
+datasource: 
   readSize: 2
   type: com.alibaba.druid.pool.DruidDataSource
-  write:
+  write: 
    url: jdbc:mysql://localhost:3306/lynn?useUnicode=true&characterEncoding=utf-8
    username: root
    password: 123456
