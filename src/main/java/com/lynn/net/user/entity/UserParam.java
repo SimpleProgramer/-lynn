@@ -12,4 +12,6 @@ public class UserParam {
 	private String userName;
 	
 	private String password;
+	
+	private boolean remember;
 }
