@@ -20,15 +20,17 @@ import com.alibaba.druid.pool.DruidDataSource;
  * */
 @Configuration
 public class DataSourceConfiguration {
-	@Autowired
-	private MybatisConfigureValue mcv;
+	
+	@Value("${datasource.type}")
+	private Class<? extends DataSource> type;
 	
 	@Bean(name="writeDataSource")
 	@Primary
+    @ConfigurationProperties(prefix = "datasource.write")
 	public DataSource writeDataSource() {
 		DruidDataSource dataSource = new DruidDataSource();
 		
-		return DataSourceBuilder.create().type(mcv.getType()).build();
+		return DataSourceBuilder.create().type(type).build();
 	}
 	
 	 /**
@@ -38,12 +40,12 @@ public class DataSourceConfiguration {
     @Bean(name = "readDataSource1")
     @ConfigurationProperties(prefix = "datasource.read1")
     public DataSource readDataSourceOne() {
-        return DataSourceBuilder.create().type(mcv.getType()).build();
+        return DataSourceBuilder.create().type(type).build();
     }
 
     @Bean(name = "readDataSource2")
     @ConfigurationProperties(prefix = "datasource.read2")
     public DataSource readDataSourceTwo() {
-        return DataSourceBuilder.create().type(mcv.getType()).build();
+        return DataSourceBuilder.create().type(type).build();
     }
 }

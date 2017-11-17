@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
+import javax.validation.Valid;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +31,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MybatisConfiguration extends MybatisAutoConfiguration{
 	
+	@Value("${datasource.readSize}")
+	private String readSize;
+	
 	public MybatisConfiguration(
 			MybatisProperties properties,
 			ObjectProvider<Interceptor[]> interceptorsProvider,
@@ -47,7 +51,7 @@ public class MybatisConfiguration extends MybatisAutoConfiguration{
 	}
 	@Bean
 	public AbstractRoutingDataSource routingDataSourceProxy() {
-		int size = 2;
+		int size = Integer.parseInt(readSize);
 		MyAbstractRoutingDataSource proxy = new MyAbstractRoutingDataSource(size);
         Map<Object, Object> targetDataSources = new HashMap<Object, Object>();
         DataSource writeDataSource = (DataSource) SpringContextHolder.getBean("writeDataSource");
