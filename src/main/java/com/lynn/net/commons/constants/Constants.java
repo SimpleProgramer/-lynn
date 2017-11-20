@@ -52,6 +52,8 @@ public class Constants {
 
     public static final String CHANNEL_REST_URL = "api.push.baidu.com";
     /**百度云推送end**/
+    /**MD5密码前缀*/
+	public static final String PWD_PREX = "pwdForMD5";
 
 
 

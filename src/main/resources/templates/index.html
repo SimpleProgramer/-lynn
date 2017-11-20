@@ -77,14 +77,25 @@
 	<script src="../js/main.js"  th:src="@{../js/main.js}"></script>
 	<script type="text/javascript">
 		$(".btn-primary").click(function() {
-			var fd = new FormData(document.querySelector("form"));
+			//var fd = new FormData(document.querySelector("form"));
+			var data = {
+				"userName" : "admin",
+				"password" : "1235",
+				"remember" : true
+			};
 			$.ajax({
-				url:"192.168.10.14:9999/admin/doLogin",
-				data:fd,
+				url:"http://localhost:9999/admin/doLogin",
+				data:data,
 				type:"post",
 				dataType:"json",
-				d
-				
+				success:function(data) {
+					if(data.code == "200") {
+						alert("登录成功");
+					} 
+				},
+				error:function() {
+					alert(1);
+				}
 			})
 		})
 	</script>

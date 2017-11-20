@@ -4,13 +4,15 @@ import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * Hello world!
  *
  */
-@SpringBootApplication(exclude=MybatisAutoConfiguration.class)
+@SpringBootApplication
+@ImportResource("classpath:spring-mybatis.xml")
 public class StartApplication 
 {
     public static void main( String[] args )

@@ -17,7 +17,7 @@ public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
 	        String typeKey = DataSourceContextHolder.getJdbcType();
 	        if (typeKey.equals(DataSourceType.write.getType()))
 	            return DataSourceType.write.getType();
-	        // 读 简单负载均衡
+	        // 读 简单轮循调用
 	        int number = count.getAndAdd(1);
 	        int lookupKey = number % dataSourceNumber;
 	        return new Integer(lookupKey);

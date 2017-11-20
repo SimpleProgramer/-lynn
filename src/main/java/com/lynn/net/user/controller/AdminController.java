@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@RequestMapping("/doLogin")
-	public ApiResult<String> toLogin(@RequestBody UserParam userParam) {
+	public ApiResult<String> toLogin(@ModelAttribute UserParam userParam) {
 		ApiResult<String> resp = new ApiResult<String>();
 		resp = adminService.doLogin(userParam);
 		return resp;

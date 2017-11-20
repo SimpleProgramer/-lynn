@@ -8,13 +8,17 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class DataSourceAop {
 	
-	@Before("execution(* com.lynn.net.*.dao..*.find*(..)) or execution(* com.lynn.net.*.dao..*.get*(..))")
+	 public DataSourceAop() {
+		 System.out.println("架在我");
+	}
+	
+	@Before("execution(* com..*.*Dao.select*(..))")
 	public void setReadDataSource() {
 		DataSourceContextHolder.read();
 	}
-	
-	@Before("execution(* com.lynn.net.*.dao..*.insert*(..)) or execution(* com.lynn.net.*.dao..*.update*(..))")
+	/*
+	@Before("execution(* com.lynn.net.*.dao.insert*(..)) or execution(* com.lynn.net.*.dao.update*(..))")
     public void setWriteDataSourceType() {
         DataSourceContextHolder.write();
-    }
+    }*/
 }
