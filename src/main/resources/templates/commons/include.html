@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="onloadJS">
+		<!-- jQuery -->
+		<script th:src="@{../js/jquery.min.js}"></script>
+		<!-- Bootstrap -->
+		<script th:src="@{../js/bootstrap.min.js}"></script>
+		<!-- Placeholder -->
+		<script th:src="@{../js/jquery.placeholder.min.js}"></script>
+		<!-- Waypoints -->
+		<script th:src="@{../js/jquery.waypoints.min.js}"></script>
+		<!-- Main JS -->
+		<script src="../js/main.js"  th:src="@{../js/main.js}"></script>
+		<!-- jquery-slimscroll -->
+		<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js" th:src="@{../js/jquery-slimscroll/jquery.slimscroll.min.js}"></script>
+		<!-- jquery.easy-pie-chart -->
+		<script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js" th:src="@{../js/jquery.easy-pie-chart/jquery.easypiechart.min.js}"></script>
+		<!-- chartist -->
+		<script src="assets/vendor/chartist/js/chartist.min.js" th:src="@{../js/chartist/js/chartist.min.js}"></script>
+		<!-- klorofil-common -->
+		<script src="assets/scripts/klorofil-common.js" th:src="@{../js/klorofil-common.js}"></script>
+		
+		<script type="text/javascript">
+			var ctx_dev="http://192.168.10.14:9999";
+			var ctx="http://waitgd.55555.io:19033";
+			function getPageJson(pageSize,pageIndex){
+				var data = {
+					"pageSize":pageSize,
+					"pageIndex":pageIndex
+				}
+				return data;
+			}
+		</script>
+		<script type="text/javascript" src="/js/user/vipJs.js"></script>
+	</div>
+</body>
+</html>

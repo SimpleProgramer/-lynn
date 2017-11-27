@@ -14,5 +14,9 @@ public class MD5Util {
     public static String getMD5(String source){
         return DigestUtils.md5Hex(source);
     }
+    
+    public static void main(String[] args) {
+		System.out.println(getMD5("pwdForMD5123456"));
+	}
 
 }

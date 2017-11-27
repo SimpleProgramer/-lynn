@@ -5,6 +5,6 @@ import com.lynn.net.user.entity.UserParam;
 
 public interface AdminService {
 
-	ApiResult<String> doLogin(UserParam userParam);
+	ApiResult<String,Object> doLogin(UserParam userParam);
 	
 }

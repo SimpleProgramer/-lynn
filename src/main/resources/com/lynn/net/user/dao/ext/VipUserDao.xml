@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.net.user.dao.VipUserDao">
+  <!--
+    文件的生成时间： 2017-11-22 14:37:05.
+    你应该把Mapper类的扩展方法的sql语句放在这个文件里面
+  -->
+  <update id="updateVipInfoDatas" parameterType="com.lynn.net.user.entity.VipParam">
+  	update t_vip_user vip set 
+  	<if test='vipName != null and  vipName != ""'>
+  		vip.user_name = #{vipName},
+  	</if>
+  	<if test='vipPhone != null and  vipPhone != ""'>
+  		vip.user_phone = #{vipPhone},
+  	</if>
+  	<if test='vipAddress != null and  vipAddress != ""'>
+  		vip.user_address = #{vipAddress},
+  	</if>
+  	<if test='vipName != null and  vipName != ""'>
+  		vip.user_name = #{vipName},
+  	</if>
+  	<if test='vipAmount != null and  vipAmount != ""'>
+  		vip.surplus_amount = #{vipAmount}
+  	</if>
+  	where vip.id = #{id}
+  </update>
+</mapper>

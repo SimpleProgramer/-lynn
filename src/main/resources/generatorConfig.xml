@@ -55,5 +55,6 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
        <table tableName="t_admin" alias="admin" mapperName="AdminDao" domainObjectName="Admin"></table>
+       <table tableName="t_vip_user" alias="vipUser" mapperName="VipUserDao" domainObjectName="VipUser"></table>
 	</context>
 </generatorConfiguration>

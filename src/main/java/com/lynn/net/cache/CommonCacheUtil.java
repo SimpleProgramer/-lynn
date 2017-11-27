@@ -1,5 +1,6 @@
 package com.lynn.net.cache;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +13,10 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Transaction;
 
+import com.lynn.net.commons.util.PageParam;
 import com.lynn.net.user.entity.Admin;
 import com.lynn.net.user.entity.AdminElement;
+import com.lynn.net.user.entity.VipUser;
 
 @Component
 @Slf4j
@@ -38,6 +41,25 @@ public class CommonCacheUtil {
 				try (Jedis Jedis = pool.getResource()) {
 					Jedis.select(0);
 					Jedis.set(key, value);
+				}
+			}
+		} catch (Exception e) {
+			log.error("Fail to cache value", e);
+		}
+	}
+	
+	/**
+	 * 缓存 可以value 永久
+	 * @param key
+	 * @param value
+	 */
+	public void cacheBytes(String key, byte[] value) {
+		try {
+			JedisPool pool = jedisPoolWrapper.getJedisPool();
+			if (pool != null) {
+				try (Jedis Jedis = pool.getResource()) {
+					Jedis.select(0);
+					Jedis.set(key.getBytes(), value);
 				}
 			}
 		} catch (Exception e) {
@@ -178,5 +200,21 @@ public class CommonCacheUtil {
 			log.error("Fail to get cached value", e);
 			return null;
 		}
+	}
+
+	public byte[] getCacheBytesValue(String key) {
+		byte[] value = null;
+		try {
+			JedisPool pool = jedisPoolWrapper.getJedisPool();
+			if (pool != null) {
+				try (Jedis Jedis = pool.getResource()) {
+					Jedis.select(0);
+					value = Jedis.get(key.getBytes());
+				}
+			}
+		} catch (Exception e) {
+			log.error("Fail to get cached value", e);
+		}
+		return value;
 	}
 }

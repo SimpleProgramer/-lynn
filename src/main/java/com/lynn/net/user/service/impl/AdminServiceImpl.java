@@ -33,18 +33,21 @@ public class AdminServiceImpl implements AdminService {
 	private AdminExample.Criteria criteria;
 
 	@Override
-	public ApiResult<String> doLogin(UserParam userParam) {
-		ApiResult<String> resp = new ApiResult<String>();
+	public ApiResult<String,Object> doLogin(UserParam userParam) {
+		ApiResult<String,Object> resp = new ApiResult<String,Object>();
 		//验证参数是否合法
 		try {
 			String userName = userParam.getUserName();
 			String password = userParam.getPassword();
 			boolean rememberMe = userParam.isRemember();
 			if(StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
+				resp.setCode(Constants.RESP_STATUS_INTERNAL_ERROR);
+				resp.setData("参数校验失败");
+				resp.setMessage("登录失败");
 				throw new CustomException("参数校验失败");
 			}
 			//检查redis是否有该对象缓存有则查redis,无则查数据库
-			String pwd = cacheUtil.getAdminLoginParam(userName);
+			String pwd = cacheUtil.getCacheValue(userName);
 			password = MD5Util.getMD5(Constants.PWD_PREX + password);
 			if(!StringUtils.isBlank(pwd)) {
 				//校验密码
@@ -75,12 +78,15 @@ public class AdminServiceImpl implements AdminService {
 					}else {
 						resp.setCode(Constants.RESP_STATUS_INTERNAL_ERROR);
 						resp.setData(userName);
-						resp.setMessage("登录失败");
+						resp.setMessage("登录失败,密码错误");
 					}
+				}else {
+					resp.setCode(Constants.RESP_STATUS_INTERNAL_ERROR);
+					resp.setData(userName);
+					resp.setMessage("登录失败,用户不存在");
 				}
 			}
 		} catch (CustomException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return resp;

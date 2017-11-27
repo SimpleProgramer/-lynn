@@ -16,9 +16,9 @@ public class DataSourceAop {
 	public void setReadDataSource() {
 		DataSourceContextHolder.read();
 	}
-	/*
-	@Before("execution(* com.lynn.net.*.dao.insert*(..)) or execution(* com.lynn.net.*.dao.update*(..))")
+	
+	@Before("execution(* com..*.*Dao.insert*(..)) or execution(* com..*.*Dao.update*(..)) or execution(* com..*.*Dao.delete*(..))")
     public void setWriteDataSourceType() {
         DataSourceContextHolder.write();
-    }*/
+    }
 }

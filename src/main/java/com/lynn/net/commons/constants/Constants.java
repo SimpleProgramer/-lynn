@@ -54,7 +54,8 @@ public class Constants {
     /**百度云推送end**/
     /**MD5密码前缀*/
 	public static final String PWD_PREX = "pwdForMD5";
-
+	
+	public static final String VIP_USER_DATA_PREX = "vipUser";
 
 
 }

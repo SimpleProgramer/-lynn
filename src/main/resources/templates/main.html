@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/commons/common_head :: commonHeader('百变泥匠-首页')">
+</head>
+<body >
+	
+	<title th:replace="/commons/include :: onloadJS" ></title>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	function loadVipUserInfo(id) {
+		$("#myModalLabel").text("编辑会员信息");
+		var ids = $("."+id+"id").text();
+		var name = $("."+id+"name").text();
+		var amount = $("."+id+"amount").text();
+		var phone = $("."+id+"phone").text();
+		$("input[name='id']").val(ids);
+		$("input[name='vipName']").val(name);
+		$("input[name='vipPhone']").val(phone);
+		$("input[name='vipAmount']").val(amount);
+	}
+	/*]]>*/
+	/*<![CDATA[*/
+		function addVipDatas() {
+			$("input[name='id']").val("-1");
+		}
+		/*]]>*/
+	</script>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top" style="height: 82px;" >
+			<div class="brand">
+				<a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<form class="navbar-form navbar-left">
+					<div class="input-group">
+						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
+					</div>
+				</form>
+				<div class="navbar-btn navbar-btn-right">
+					<a class="btn btn-success update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+								<i class="lnr lnr-alarm"></i>
+								<span class="badge bg-danger">5</span>
+							</a>
+							<ul class="dropdown-menu notifications">
+								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
+								<li><a href="#" class="more">See all notifications</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Basic Use</a></li>
+								<li><a href="#">Working With Data</a></li>
+								<li><a href="#">Security</a></li>
+								<li><a href="#">Troubleshooting</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+						<!-- <li>
+							<a class="update-pro" href="#downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="javascript:void(0)" class="active"><i class="lnr lnr-home"></i> <span>会员管理</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+                    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+					<div class="row">
+						<div class="col-md-6" style="width:100%">
+							<!-- RECENT PURCHASES -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">会员信息管理</h3>
+									<div class="right btn update-pro btn-success" >
+										<button type="button" ><i class="lnr lnr-chevron-up addVipView" data-toggle="modal" th:onclick="'addVipDatas()'" data-target="#myModal">添加会员</i></button>
+										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div class="panel-body no-padding">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>会员ID</th>
+												<th>会员名称</th>
+												<th>剩余金额</th>
+												<th>创建时间</th>
+												<th>联系方式</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody class="tableBody">
+											<tr  th:each="user,userStat : ${resps}" >
+												<td th:class="${user.id}+'id'" th:text="${user.id}"></td>
+												<td th:class="${user.id}+'name'"  th:text="${user.userName}"></td>
+												<td th:class="${user.id}+'amount'" th:text="${user.surplusAmount}"></td>
+												<td th:class="${user.id}+'date'" th:text="${user.dateString}"></td>
+												<td th:class="${user.id}+'phone'" th:text="${user.userPhone}"></td>
+												<td><a th:class="editVip" th:onclick="'loadVipUserInfo(\''+${user.id}+'\')'" href='#'  data-toggle="modal" data-target="#myModal">编辑</a>&nbsp;&nbsp;<a href='#'><span>删除</span></a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- END RECENT PURCHASES -->
+						</div>
+					</div>
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                <h4 class="modal-title" id="myModalLabel">添加会员信息</h4>
+					            </div>
+					            <div class="modal-body">
+					            	<form action="#" class="fh5co-form animate-box" id="vipForm" th:object="${vipUser}" data-animate-effect="fadeIn">
+										<div class="form-group">
+											<input type="hidden" name="id" />
+											<label for="vipName">会员名称</label>
+											<input type="text" class="form-control" name="vipName" placeholder="会员名称" autocomplete="off">
+										</div>
+										<div class="form-group">
+											<label for="vipPhone">联系方式</label>
+											<input type="text" class="form-control"  name="vipPhone" placeholder="联系方式" autocomplete="off">
+										</div>
+										<div class="form-group">
+											<label for="vipAddress" >联系地址</label>
+											<input type="text" class="form-control" name="vipAddress" placeholder="联系地址" autocomplete="off">
+										</div>
+										<div class="form-group">
+											<label for="vipAmount" >充值金额</label>
+											<input type="text" class="form-control" name="vipAmount" placeholder="充值金额" autocomplete="off">
+										</div>
+									</form>
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					                <button type="button" class="btn btn-primary btn-edit" data-dismiss="modal">保存更改</button>
+					            </div>
+					        </div><!-- /.modal-content -->
+					    </div><!-- /.modal -->
+					</div>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy; 2017 <a href="#" target="_blank">Theme I Need</a>. All Rights Reserved. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

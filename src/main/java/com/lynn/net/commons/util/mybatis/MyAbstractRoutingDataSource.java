@@ -4,6 +4,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
+import com.lynn.net.commons.constants.Constants;
+import com.lynn.net.commons.util.MD5Util;
+
 public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
 	 private final int dataSourceNumber;
 	    private AtomicInteger count = new AtomicInteger(0);
@@ -22,5 +25,9 @@ public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
 	        int lookupKey = number % dataSourceNumber;
 	        return new Integer(lookupKey);
 	    }
+	    
+	    public static void main(String[] args) {
+			System.out.println(MD5Util.getMD5(Constants.PWD_PREX+"123456"));
+		}
 
 }

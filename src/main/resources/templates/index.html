@@ -1,33 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Minimal and Clean Sign up / Login and Forgot Form by FreeHTML5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico" />
-
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
-	
-	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
-	<link rel="stylesheet" th:href="@{../css/animate.css}" />
-	<link rel="stylesheet" th:href="@{../css/style.css}" />
+<head th:replace="/commons/common_head :: commonHeader('百变泥匠-首页')">
+	<include src="commons/common_head.html" />
 	<!-- Modernizr JS -->
 	<script th:src="@{js/modernizr-2.6.2.min.js}"></script>
 </head>
@@ -36,68 +10,58 @@
             <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					
-
 					<!-- Start Sign In Form -->
 					<form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn">
-						<h2>犀星微宝</h2>
+						<h2>百变泥匠</h2>
 						<div class="form-group">
 							<label for="username" class="sr-only">Username</label>
-							<input type="text" class="form-control" id="username" placeholder="用户名" autocomplete="off">
+							<input type="text" class="form-control" id="username" name="userName" placeholder="用户名" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
+							<input type="password" class="form-control" id="password" name="password" placeholder="密码" autocomplete="off">
 						</div>
 						<div class="form-group">
-							<label for="remember"><input type="checkbox" id="remember"> 记住我</label>
+							<label for="remember"><input type="checkbox" id="remember" name="remember"> 记住我</label>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="登录" class="btn btn-primary">
+							<input type="button" value="登录" class="btn btn-primary">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
 
 				</div>
 			</div>
+			<p6 th:text="${code}"></p6>
 			<div class="row" style="padding-top: 60px; clear: both;">
 				<div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved. More Templates - Collect from <a href="#" title="contacts me" target="_blank">Create by wangzun</a></small></p></div>
 			</div>
 		</div>
-	
-	<!-- jQuery -->
-	<script th:src="@{../js/jquery.min.js}"></script>
-	<!-- Bootstrap -->
-	<script th:src="@{../js/bootstrap.min.js}"></script>
-	<!-- Placeholder -->
-	<script th:src="@{../js/jquery.placeholder.min.js}"></script>
-	<!-- Waypoints -->
-	<script th:src="@{../js/jquery.waypoints.min.js}"></script>
-	<!-- Main JS -->
-	<script src="../js/main.js"  th:src="@{../js/main.js}"></script>
-	<script type="text/javascript">
+	<div th:replace="/commons/include :: onloadJS"></div>	
+	<script type="text/javascript" th:inline="javascript">
 		$(".btn-primary").click(function() {
 			//var fd = new FormData(document.querySelector("form"));
 			var data = {
-				"userName" : "admin",
-				"password" : "1235",
+				"userName" : $("#username").val(),
+				"password" : $("#password").val(),
 				"remember" : true
 			};
 			$.ajax({
-				url:"http://localhost:9999/admin/doLogin",
+				url: ctx + "/admin/doLogin",
 				data:data,
 				type:"post",
 				dataType:"json",
 				success:function(data) {
-					if(data.code == "200") {
-						alert("登录成功");
-					} 
+					if(200 == data.code) {
+						location.href= ctx + "/admin/main";
+					}
 				},
 				error:function() {
 					alert(1);
 				}
 			})
 		})
+		
 	</script>
 	</body>
 	 
