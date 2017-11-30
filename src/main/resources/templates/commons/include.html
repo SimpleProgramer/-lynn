@@ -3,9 +3,9 @@
 <body>
 	<div th:fragment="onloadJS">
 		<!-- jQuery -->
-		<script th:src="@{../js/jquery.min.js}"></script>
+		<script th:src="@{/js/jquery.min.js}"></script>
 		<!-- Bootstrap -->
-		<script th:src="@{../js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<!-- Placeholder -->
 		<script th:src="@{../js/jquery.placeholder.min.js}"></script>
 		<!-- Waypoints -->
@@ -31,6 +31,11 @@
 				}
 				return data;
 			}
+			$(".treeTab").click(function() {
+				alert(1);
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+			});
 		</script>
 		<script type="text/javascript" src="/js/user/vipJs.js"></script>
 	</div>

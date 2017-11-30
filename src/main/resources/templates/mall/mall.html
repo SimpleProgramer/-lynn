@@ -8,15 +8,17 @@
 	<script type="text/javascript">
 	/*<![CDATA[*/
 	function loadVipUserInfo(id) {
-		$("#myModalLabel").text("编辑会员信息");
+		$("#myModalLabel").text("编辑商品信息");
 		var ids = $("."+id+"id").text();
-		var name = $("."+id+"name").text();
-		var amount = $("."+id+"amount").text();
-		var phone = $("."+id+"phone").text();
+		var goodsName = $("."+id+"goodsName").text();
+		var goodsPrice = $("."+id+"goodsPrice").text();
+		var goodsCount = $("."+id+"goodsCount").text();
+		var goodsClass = $("."+id+"goodsClass").val();
+		var goodsClass = $("."+id+"surplus").val();
 		$("input[name='id']").val(ids);
-		$("input[name='vipName']").val(name);
-		$("input[name='vipPhone']").val(phone);
-		$("input[name='vipAmount']").val(amount);
+		$("input[name='goodsName']").val(goodsName);
+		$("input[name='goodsPrice']").val(goodsPrice);
+		$("input[name='goodsCount']").val(goodsCount);
 	}
 	/*]]>*/
 	/*<![CDATA[*/
@@ -92,8 +94,8 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="javascript:void(0)" class="active mainTree treeTab"><i class="lnr lnr-home"></i> <span>会员管理</span></a></li>
-						<li><a href="javascript:void(0)" class="mallTree treeTab"><i class="lnr"></i> <span>商品管理</span></a></li>
+						<li><a href="javascript:void(0)" class="mainTree treeTab"><i class="lnr lnr-home"></i> <span>会员管理</span></a></li>
+						<li><a href="javascript:void(0)" class="active mallTree treeTab"><i class="lnr lnr-home"></i> <span>商品管理</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -109,9 +111,9 @@
 							<!-- RECENT PURCHASES -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">会员信息管理</h3>
+									<h3 class="panel-title">商品信息管理</h3>
 									<div class="right btn update-pro btn-success" >
-										<button type="button" ><i class="lnr lnr-chevron-up addVipView" data-toggle="modal" th:onclick="'addVipDatas()'" data-target="#myModal">添加会员</i></button>
+										<button type="button" ><i class="lnr lnr-chevron-up addVipView" data-toggle="modal" th:onclick="'addVipDatas()'" data-target="#myModal">添加商品</i></button>
 										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
 									</div>
 								</div>
@@ -119,22 +121,26 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>会员ID</th>
-												<th>会员名称</th>
-												<th>剩余金额</th>
+												<th>商品ID</th>
+												<th>商品名称</th>
+												<th>商品分类</th>
+												<th>商品价格</th>
+												<th>剩余库存</th>
 												<th>创建时间</th>
-												<th>联系方式</th>
+												<th>商品描述</th>
 												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody class="tableBody">
-											<tr  th:each="user,userStat : ${resps}" >
-												<td th:class="${user.id}+'id'" th:text="${user.id}"></td>
-												<td th:class="${user.id}+'name'"  th:text="${user.userName}"></td>
-												<td th:class="${user.id}+'amount'" th:text="${user.surplusAmount}"></td>
-												<td th:class="${user.id}+'date'" th:text="${user.dateString}"></td>
-												<td th:class="${user.id}+'phone'" th:text="${user.userPhone}"></td>
-												<td><a th:class="editVip" th:onclick="'loadVipUserInfo(\''+${user.id}+'\')'" href='#'  data-toggle="modal" data-target="#myModal">编辑</a></td>
+											<tr  th:each="goods,userStat : ${resps}" >
+												<td th:class="${goods.id}+'id'" th:text="${goods.id}"></td>
+												<td th:class="${goods.id}+'goodsName'"  th:text="${goods.goodsName}"></td>
+												<td th:class="${goods.id}+'goodsClass'"  th:text="${goods.goodsClass}"></td>
+												<td th:class="${goods.id}+'goodsPrice'"  th:text="${goods.goodsPrice}"></td>
+												<td th:class="${goods.id}+'surplusRepository'" th:text="${goods.surplusRepository}"></td>
+												<td th:class="${goods.id}+'date'" th:text="${goods.dateString}"></td>
+												<td th:class="${goods.id}+'goodsContext'" th:text="${goods.goodsContext}"></td>
+												<td><a th:class="editVip" th:onclick="'loadVipUserInfo(\''+${goods.id}+'\')'" href='#'  data-toggle="modal" data-target="#myModal">编辑</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -148,26 +154,36 @@
 					        <div class="modal-content">
 					            <div class="modal-header">
 					                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					                <h4 class="modal-title" id="myModalLabel">添加会员信息</h4>
+					                <h4 class="modal-title" id="myModalLabel">添加商品信息</h4>
 					            </div>
 					            <div class="modal-body">
-					            	<form action="#" class="fh5co-form animate-box" id="vipForm" th:object="${vipUser}" data-animate-effect="fadeIn">
+					            	<form action="#" class="fh5co-form animate-box" id="vipForm" data-animate-effect="fadeIn">
 										<div class="form-group">
 											<input type="hidden" name="id" />
-											<label for="vipName">会员名称</label>
-											<input type="text" class="form-control" name="vipName" placeholder="会员名称" autocomplete="off">
+											<label for="goodsName">商品名称</label>
+											<input type="text" class="form-control" name="goodsName" placeholder="商品名称" autocomplete="off">
 										</div>
 										<div class="form-group">
-											<label for="vipPhone">联系方式</label>
-											<input type="text" class="form-control"  name="vipPhone" placeholder="联系方式" autocomplete="off">
+											<label for="goodsPrice">商品价格</label>
+											<input type="text" class="form-control"  name="goodsPrice" placeholder="商品价格" autocomplete="off">
 										</div>
 										<div class="form-group">
-											<label for="vipAddress" >联系地址</label>
-											<input type="text" class="form-control" name="vipAddress" placeholder="联系地址" autocomplete="off">
+											<label for="goodsClass" >商品分类</label>
+											<!-- <input type="text" class="form-control" name="goodsClass" placeholder="商品分类" autocomplete="off"> -->
+											
 										</div>
 										<div class="form-group">
-											<label for="vipAmount" >充值金额</label>
-											<input type="text" class="form-control" name="vipAmount" placeholder="充值金额" autocomplete="off">
+											<label for="goodsPrice" >商品价格</label>
+											<input type="text" class="form-control" name="goodsPrice" placeholder="商品分类" autocomplete="off">
+											
+										</div>
+										<div class="form-group">
+											<label for="goodsCount" class="half-row" >总库存</label><label class="half-row"  for="surplusRepository" >剩余库存</label>
+											<input type="text" class="form-control half-row" name="goodsRepository" placeholder="总库存" ><input type="text" class="form-control half-row" name="surplusRepository" placeholder="剩余库存" autocomplete="off">
+										</div>
+										<div class="form-group">
+											<label for="goodsCount" >商品描述</label>
+											<input type="textarea" class="form-control" name="goodsContext" placeholder="商品描述" autocomplete="off">
 										</div>
 									</form>
 					            </div>

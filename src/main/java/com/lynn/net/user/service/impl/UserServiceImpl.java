@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 		if(users == null || users.size() == 0) {
 			//查询数据库
 			example = new VipUserExample();
-			example.setFromRowNum(page.getPageSize() * (page.getPageIndex() - 1));
+			example.setFromRowNum(page.getFromNumber());
 			example.setToRowNum(page.getPageSize());
 			users = userDao.selectByExample(example);
 			for (int i = 0; i < users.size(); i++) {

@@ -17,7 +17,7 @@ $(function() {
 							+"<td>"+ item.surplusAmount +"</td>"
 							+"<td>"+ item.dateString +"</td>"
 							+"<td>"+ item.userPhone +"</td>"
-							+"<td><a href='#' onclick='loadVipUserInfo("+ item.id +")'><span>编辑</span></a>&nbsp;&nbsp;<a href='#'><span>删除</span></a></td>"
+							+"<td><a href='#' onclick='loadVipUserInfo("+ item.id +")'><span>编辑</span></a></td>"
 								+"</tr>";
 					})
 					$(".tableBody").append(datas);
@@ -28,7 +28,9 @@ $(function() {
 			}
 		})
 	}
-	$(".active").bind("click",loadTableJson);
+	$(".mainTree").bind("click",function() {
+		location.href=ctx+"/main..1.10";
+	});
 	/*$(".active").click();*/
 	$(".btn-edit").bind("click",editVipInfo);
 	function editVipInfo() {
@@ -58,5 +60,9 @@ $(function() {
 				}
 			}
 		})
+	}
+	$(".mallTree").bind("click",loadMallDatas);
+	function loadMallDatas() {
+		location.href = ctx+"/mall.mall.1.10";
 	}
 })
